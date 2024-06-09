@@ -1,72 +1,59 @@
 ﻿@model PointSale.Models.Usuarios
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>Tu página</title>
-    <link rel="stylesheet" type="text/css" href="~\pointsale\views\login\Login.css" />
+    <style>
+        body{
+            background: #DBC9F5;
+            background: linear-gradient(to bottom, #4E2394, #DBC9F5);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bg {
+            background-image: url("/Images/00_ImgLogin.png");
+            background-position: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="sidenav">
-        <div class="sidenav">
-            <div class="login-main-text">
-                <h2>Application<br> Login Page</h2>
-                <p>Login or register from here to access.</p>
+    <div class="container w-75 bg-primary mt-5 rounded shadow">
+        <div class="row align-items-stretch">
+            <div class="col bg d-none d-lg-block rounded">
+
             </div>
-        </div>
-        <div class="main">
-            <div class="col-md-6 col-sm-12">
-                <div class="login-form">
-                    <form>
-                        <div class="form-group">
-                            <label>User Name</label>
-                            <input type="text" class="form-control" placeholder="User Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-black">Login</button>
-                        <button type="submit" class="btn btn-secondary">Register</button>
-                    </form>
+            <div class="col bg-white p-5 rounded-end">
+                <div class="text-end">
+                    @* <img src="~/Images/00_ImgLogin.png" height="48px"/> *@
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card mt-5">
-                    <div class="card-header">
-                        <h2>Login</h2>
+                <h2 class="fw-bold text-center py-5">Bienvenido</h2>
+                <form asp-action="Login" method="post" asp-controller="Login">
+                    <div class="mb-4">
+                        <label asp-for="Username" class="form-label"><b>Usuario: </b></label>
+                        <input asp-for="Username" class="form-control" type="text" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
-                    <div class="card-body">
-                        <form asp-action="Login" method="post" asp-controller="Login">
-                            <div class="form-group">
-                                <label asp-for="Username" class="control-label"></label>
-                                <input asp-for="Username" class="form-control" />
-                                <span asp-validation-for="Username" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Password" class="control-label"></label>
-                                <input asp-for="Password" class="form-control" type="password" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label"><b>Contraseña: </b></label>
+                        <input asp-for="Password" class="form-control" type="password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-                </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-success"><b>Iniciar Sesión </b></button>
+                    </div>
+                    <div class="my-3">
+                        <span><a href="#">Recupera tu contraseña </a></span>
+                        <br />
+                        <span><a href="#">Contactanos </a></span>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </body>
 </html>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
