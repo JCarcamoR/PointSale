@@ -7,53 +7,130 @@
     <title>Tu página</title>
     <style>
         body{
-            background: #DBC9F5;
-            background: linear-gradient(to bottom, #4E2394, #DBC9F5);
             margin: 0;
-            height: 100vh;
+            height: 95vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         .bg {
-            background-image: url("/Images/00_ImgLogin.png");
+            background-image: url("/Images/00_ImgLogin.jpg");
             background-position: center;
         }
     </style>
 </head>
 <body>
-    <div class="container w-75 bg-primary mt-5 rounded shadow">
+    <div class="container w-75 bg-primary mt-1 rounded shadow">
         <div class="row align-items-stretch">
             <div class="col bg d-none d-lg-block rounded">
 
             </div>
             <div class="col bg-white p-5 rounded-end">
-                <div class="text-end">
-                    @* <img src="~/Images/00_ImgLogin.png" height="48px"/> *@
-                </div>
-                <h2 class="fw-bold text-center py-5">Bienvenido</h2>
-                <form asp-action="Login" method="post" asp-controller="Login">
-                    <div class="mb-4">
-                        <label asp-for="Username" class="form-label"><b>Usuario: </b></label>
-                        <input asp-for="Username" class="form-control" type="text" />
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
-                    <div class="mb-4">
-                        <label asp-for="Password" class="form-label"><b>Contraseña: </b></label>
-                        <input asp-for="Password" class="form-control" type="password" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-outline-success"><b>Iniciar Sesión </b></button>
-                    </div>
-                    <div class="my-3">
-                        <span><a href="#">Recupera tu contraseña </a></span>
+                <div class="container">
+                    <div id="SecLogin" style="display: block;">
+                        <h2 class="fw-bold text-center py-5">¡Bienvenido!</h2>
+                        <div class="row">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                            </svg>
+                        </div>
                         <br />
-                        <span><a href="#">Contactanos </a></span>
+                        <form asp-action="Login" method="post" asp-controller="Login">
+                            <div class="mb-4">
+                                <label asp-for="Username" class="form-label"><b>Usuario<i class="cr">*</i>:</b></label>
+                                <input asp-for="Username" class="form-control" type="text" id="UserLogin"/>
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <div class="mb-4">
+                                <label asp-for="Password" class="form-label"><b>Contraseña<i class="cr">*</i>:</b></label>
+                                <input asp-for="Password" class="form-control" type="password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-outline-success"><b>Iniciar Sesión </b></button>
+                            </div>
+                            <br />
+                            <div class="my-3">
+                                <p style="text-align: justify;">
+                                    Tienes dudas hacera del sistema, has encontrado un bug, quieres recuperar tu contraseña de usuario, deceas modificaciones en el sistema,
+                                    o deceas un desarrollo personal segun tus necesidades. <span><a href="#" id="lknCto"><b>¡Contactanos!</b></a></span>
+                                </p>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div id="SecContacto" style="display: none;">
+                        <div class="row">
+                            <button type="button" class="btn-close" aria-label="Close" id="btnReturLog"></button>
+                        </div>
+                        <h2 class="fw-bold text-center py-5">¡Contactanos!</h2>
+                        <div class="row">
+                            <div class="col">
+                                <label for="NombresCto" class="form-label"><b>Nombre(s)<i class="cr">*</i>: </b></label>
+                                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                            </div>
+                            <div class="col">
+                                <label for="ApellidosCto" class="form-label"><b>Apellidos<i class="cr">*</i>: </b></label>
+                                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="ApellidosCto" class="form-label"><b>Email<i class="cr">*</i>: </b></label>
+                                <input type="email" class="form-control" placeholder="correo@dominio.com">
+                            </div>
+                            <div class="col">
+                                <label for="ApellidosCto" class="form-label"><b>Telefono<i class="cr">*</i>: </b></label>
+                                <input type="tel" class="form-control" placeholder="5512345678">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="ApellidosCto" class="form-label"><b>Asunto<i class="cr">*</i>: </b></label>
+                                <select id="inputState" class="form-select">
+                                    <option value="1" selected>Solicitud de información.</option>
+                                    <option value="2" >Recuperar contraseña.</option>
+                                    <option value="3" >Reporte de Bug.</option>
+                                    <option value="4" >Otro...</option>
+                                </select>
+                                <input type="text" style="display:none" class="form-control" placeholder="First name" aria-label="First name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="ApellidosCto" class="form-label"><b>Descripción<i class="cr">*</i>: </b></label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-outline-warning for"><b>Enviar</b></button>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        var linkContacto = document.getElementById("lknCto");
+        linkContacto.addEventListener("click", function () {
+            let SecLog = document.getElementById("SecLogin");
+            SecLog.style.display = "none";
+            let SecCto = document.getElementById("SecContacto");
+            SecCto.style.display = "block";
+        });
+        var btnRetLogin = document.getElementById("btnReturLog");
+        btnRetLogin.addEventListener("click", function () {
+            let SecLog = document.getElementById("SecLogin");
+            SecLog.style.display = "block";
+            let SecCto = document.getElementById("SecContacto");
+            SecCto.style.display = "none";
+        });
+        function CleanForms(){
+            let inLogIn = document.getElementById("UserLogin");
+            inLogIn.textContent = "";
+        }
+    </script>
 </body>
 </html>
