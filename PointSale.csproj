@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\Login\Login.css" />
     <None Include="wwwroot\Images\00_ImgLogin.png" />
   </ItemGroup>
 

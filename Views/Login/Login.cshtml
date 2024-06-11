@@ -5,25 +5,12 @@
 <head>
     <meta charset="utf-8" />
     <title>Tu página</title>
-    <style>
-        body{
-            margin: 0;
-            height: 95vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .bg {
-            background-image: url("/Images/00_ImgLogin.jpg");
-            background-position: center;
-        }
-    </style>
+    <link rel ="stylesheet" href="~/css/Login/Login.css">
 </head>
 <body>
     <div class="container w-75 bg-primary mt-1 rounded shadow">
         <div class="row align-items-stretch">
             <div class="col bg d-none d-lg-block rounded">
-
             </div>
             <div class="col bg-white p-5 rounded-end">
                 <div class="container">
@@ -44,7 +31,15 @@
                             </div>
                             <div class="mb-4">
                                 <label asp-for="Password" class="form-label"><b>Contraseña<i class="cr">*</i>:</b></label>
-                                <input asp-for="Password" class="form-control" type="password" />
+                                <div class="input-group mb-3">
+                                    <input asp-for="Password" class="form-control" type="password" id="password" aria-label="Username" aria-describedby="basic-addon1" />
+                                    <span class="input-group-text" onclick="togglePasswordVisibility()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                        </svg>
+                                    </span>
+                                </div>
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="d-grid">
@@ -53,8 +48,8 @@
                             <br />
                             <div class="my-3">
                                 <p style="text-align: justify;">
-                                    Tienes dudas hacera del sistema, has encontrado un bug, quieres recuperar tu contraseña de usuario, deceas modificaciones en el sistema,
-                                    o deceas un desarrollo personal segun tus necesidades. <span><a href="#" id="lknCto"><b>¡Contactanos!</b></a></span>
+                                    Tiene dudas acerca del sistema, ¿Has encontrado un error, necesita recuperar su contraseña de usuario, deseas modificaciones, 
+                                    o un desarrollo personalizado según tus necesidades?. <span><a href="#" id="lknCto"><b>¡Contactanos!</b></a></span>
                                 </p>
                             </div>
                         </form>
@@ -67,39 +62,42 @@
                         <div class="row">
                             <div class="col">
                                 <label for="NombresCto" class="form-label"><b>Nombre(s)<i class="cr">*</i>: </b></label>
-                                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                                <input type="text" class="form-control" placeholder="First name" id="CteNombre">
                             </div>
                             <div class="col">
                                 <label for="ApellidosCto" class="form-label"><b>Apellidos<i class="cr">*</i>: </b></label>
-                                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                                <input type="text" class="form-control" placeholder="Last name" id="CteApe">
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col">
-                                <label for="ApellidosCto" class="form-label"><b>Email<i class="cr">*</i>: </b></label>
-                                <input type="email" class="form-control" placeholder="correo@dominio.com">
+                                <label for="ApellidosCto" class="form-label"><b>Correo electrónico<i class="cr">*</i>: </b></label>
+                                <input type="email" class="form-control" placeholder="correo@dominio.com" id="CteEmail">
                             </div>
                             <div class="col">
-                                <label for="ApellidosCto" class="form-label"><b>Telefono<i class="cr">*</i>: </b></label>
-                                <input type="tel" class="form-control" placeholder="5512345678">
+                                <label for="ApellidosCto" class="form-label"><b>Teléfono<i class="cr">*</i>: </b></label>
+                                <input type="tel" class="form-control" placeholder="5512345678" id="CteTel">
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col">
                                 <label for="ApellidosCto" class="form-label"><b>Asunto<i class="cr">*</i>: </b></label>
-                                <select id="inputState" class="form-select">
+                                <select class="form-select" id="CteAs">
                                     <option value="1" selected>Solicitud de información.</option>
                                     <option value="2" >Recuperar contraseña.</option>
                                     <option value="3" >Reporte de Bug.</option>
                                     <option value="4" >Otro...</option>
                                 </select>
-                                <input type="text" style="display:none" class="form-control" placeholder="First name" aria-label="First name">
+                                <input type="text" style="display:none" class="form-control" placeholder="First name" aria-label="First name" id="CteOpOtro">
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col">
                                 <label for="ApellidosCto" class="form-label"><b>Descripción<i class="cr">*</i>: </b></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" rows="3" id="CteDesc"></textarea>
                             </div>
                         </div>
                         <br />
@@ -112,25 +110,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        var linkContacto = document.getElementById("lknCto");
-        linkContacto.addEventListener("click", function () {
-            let SecLog = document.getElementById("SecLogin");
-            SecLog.style.display = "none";
-            let SecCto = document.getElementById("SecContacto");
-            SecCto.style.display = "block";
-        });
-        var btnRetLogin = document.getElementById("btnReturLog");
-        btnRetLogin.addEventListener("click", function () {
-            let SecLog = document.getElementById("SecLogin");
-            SecLog.style.display = "block";
-            let SecCto = document.getElementById("SecContacto");
-            SecCto.style.display = "none";
-        });
-        function CleanForms(){
-            let inLogIn = document.getElementById("UserLogin");
-            inLogIn.textContent = "";
-        }
-    </script>
+    <script src="~/js/Login/Login.js" type="text/javascript"></script>
 </body>
 </html>
