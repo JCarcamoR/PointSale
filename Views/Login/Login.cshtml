@@ -84,13 +84,13 @@
                         <div class="row">
                             <div class="col">
                                 <label for="ApellidosCto" class="form-label"><b>Asunto<i class="cr">*</i>: </b></label>
-                                <select class="form-select" id="CteAs">
+                                <select class="form-select" id="CteAs" onchange="cambioOpcion()" style="display:block">
                                     <option value="1" selected>Solicitud de información.</option>
                                     <option value="2" >Recuperar contraseña.</option>
                                     <option value="3" >Reporte de Bug.</option>
                                     <option value="4" >Otro...</option>
                                 </select>
-                                <input type="text" style="display:none" class="form-control" placeholder="First name" aria-label="First name" id="CteOpOtro">
+                                <input type="text" style="display:none" class="form-control" placeholder="Asunto" aria-label="First name" id="CteOpOtro">
                             </div>
                         </div>
                         <br />
