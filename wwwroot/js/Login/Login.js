@@ -27,6 +27,7 @@ function CleanForms() {
     $('#CteOpOtro').val('');
     $('#CteDesc').val('');
     $('#CteAs').val('1');
+    cambioOpcion();
 }
 
 function togglePasswordVisibility() {
@@ -35,5 +36,19 @@ function togglePasswordVisibility() {
         passwordInput.type = "text";
     } else {
         passwordInput.type = "password";
+    }
+}
+
+function cambioOpcion() {
+    let valorSeleccionado = $("#CteAs").val();
+    let txtOtro = document.getElementById("CteOpOtro");
+    let lstASun = document.getElementById("CteAs");
+
+    if (valorSeleccionado == 4) {
+        lstASun.style.display = "none";
+        txtOtro.style.display = "block";
+    } else {
+        lstASun.style.display = "block";
+        txtOtro.style.display = "none";
     }
 }
