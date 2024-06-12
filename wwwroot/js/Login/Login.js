@@ -30,12 +30,25 @@ function CleanForms() {
     cambioOpcion();
 }
 
-function togglePasswordVisibility() {
-    var passwordInput = document.getElementById("password");
+function togglePasswordVisibility(NumEye) {
+
+    let passwordInput = document.getElementById("password");
+
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
     } else {
         passwordInput.type = "password";
+    }
+
+    let IcEyeNo = document.getElementById("Eye1");
+    let IcEyeY  = document.getElementById("Eye2");
+
+    if (NumEye == 1) {
+        IcEyeNo.style.display = "none";
+        IcEyeY.style.display = "block";
+    } else if (NumEye == 2) {
+        IcEyeY.style.display = "none";
+        IcEyeNo.style.display = "block";
     }
 }
 
