@@ -17,7 +17,6 @@ namespace PointSale.Controllers
             _contexto = contexto;
         }
 
-        [HttpGet]
         public IActionResult login()
         {
             ClaimsPrincipal c = HttpContext.User;
@@ -88,5 +87,26 @@ namespace PointSale.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult SendEmailContac(string Data)
+        {
+            try
+            {
+
+
+
+
+
+
+            }catch(Exception ex)
+            {
+                var response = new
+                {
+                    Estado = "Error",
+                    Mensaje = ex.ToString()
+                };
+                return Json(response);
+            }
+        }
     }
 }
