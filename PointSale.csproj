@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PointSaleBD\**" />
+    <Compile Remove="PointSaleBussines\**" />
+    <Content Remove="PointSaleBD\**" />
+    <Content Remove="PointSaleBussines\**" />
+    <EmbeddedResource Remove="PointSaleBD\**" />
+    <EmbeddedResource Remove="PointSaleBussines\**" />
+    <None Remove="PointSaleBD\**" />
+    <None Remove="PointSaleBussines\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
     <PackageReference Include="jQuery" Version="3.7.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
