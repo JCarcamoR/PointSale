@@ -75,5 +75,19 @@
     <Build Include="dbo\Tables\UNIDADES_MEDIDA.sql" />
     <Build Include="dbo\Tables\PRODUCTOS.sql" />
     <Build Include="dbo\Tables\EMAIL.sql" />
+    <Build Include="dbo\Tables\VENTAS.sql" />
+    <Build Include="dbo\Tables\TIPO_PRECIOS.sql" />
+    <Build Include="dbo\Tables\TIPO_MOVIMIENTOS.sql" />
+    <Build Include="dbo\Tables\SALIDAS.sql" />
+    <Build Include="dbo\Tables\PRECIOS.sql" />
+    <Build Include="dbo\Tables\METODOS_PAGO.sql" />
+    <Build Include="dbo\Tables\ENTRADAS.sql" />
+    <Build Include="dbo\Tables\DETALLE_VENTAS.sql" />
+    <Build Include="dbo\Tables\DETALLE_SALIDAS.sql" />
+    <Build Include="dbo\Tables\DETALLE_ENTRADAS.sql" />
+    <Build Include="dbo\Tables\CLIENTES.sql" />
+    <Build Include="dbo\Tables\PERMISOS.sql" />
+    <Build Include="dbo\Tables\TELEFONO.sql" />
+    <Build Include="dbo\Tables\DOMICILIOS.sql" />
   </ItemGroup>
 </Project>
