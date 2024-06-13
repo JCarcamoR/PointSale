@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Bussines\Alamcen\" />
+    <Folder Include="Bussines\Sistema\" />
+    <Folder Include="Bussines\Ventas\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 

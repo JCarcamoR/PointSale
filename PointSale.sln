@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointSale", "PointSale.csproj", "{EB7AFFAF-D8A2-4036-9991-A98126A80063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointSaleBussines", "PointSaleBussines\PointSaleBussines.csproj", "{11163752-9C79-49F9-867F-C9CCEBDB9C44}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PointSaleBD", "PointSaleBD\PointSaleBD.sqlproj", "{9B58A4EA-67A5-44D9-B61C-721A1759265C}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{EB7AFFAF-D8A2-4036-9991-A98126A80063}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB7AFFAF-D8A2-4036-9991-A98126A80063}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB7AFFAF-D8A2-4036-9991-A98126A80063}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11163752-9C79-49F9-867F-C9CCEBDB9C44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11163752-9C79-49F9-867F-C9CCEBDB9C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11163752-9C79-49F9-867F-C9CCEBDB9C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11163752-9C79-49F9-867F-C9CCEBDB9C44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B58A4EA-67A5-44D9-B61C-721A1759265C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B58A4EA-67A5-44D9-B61C-721A1759265C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B58A4EA-67A5-44D9-B61C-721A1759265C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
