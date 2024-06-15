@@ -2,27 +2,6 @@
 {
     public class EnvioEmail
     {
-        private string _email;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

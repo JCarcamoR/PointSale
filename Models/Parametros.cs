@@ -4,7 +4,7 @@
     {   
         public Parametros()
         {
-            propiedadesControl = new PropiedadesComunes;
+            propiedadesControl = new PropiedadesComunes();
         }
 
         public int IdParametro     {get; set;}
