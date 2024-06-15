@@ -20,12 +20,12 @@
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
     <PackageReference Include="jQuery" Version="3.7.1" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Bussines\Alamcen\" />
-    <Folder Include="Bussines\Sistema\" />
     <Folder Include="Bussines\Ventas\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>

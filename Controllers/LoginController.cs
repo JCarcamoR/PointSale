@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using PointSale.Bussines.Sistema.Login;
 using PointSale.Data;
 using PointSale.Models;
 using System.Data.SqlClient;
 using System.Security.Claims;
+using System.Web.Helpers;
 
 namespace PointSale.Controllers
 {
@@ -22,7 +24,7 @@ namespace PointSale.Controllers
             ClaimsPrincipal c = HttpContext.User;
             if (c.Identity != null)
             {
-                if (c.Identity.IsAuthenticated) 
+                if (c.Identity.IsAuthenticated)
                 {
                     ViewBag.UserAuAuthenticated = true;
                     return RedirectToAction("Index", "Home");
@@ -46,15 +48,15 @@ namespace PointSale.Controllers
                         //
                         connection.Open();
                         var dataReader = command.ExecuteReader();
-                        while (dataReader.Read()) 
+                        while (dataReader.Read())
                         {
-                            if (dataReader["UserName"] != null && user.Username != null) 
+                            if (dataReader["UserName"] != null && user.Username != null)
                             {
-                                List<Claim> claims = new List<Claim>() 
+                                List<Claim> claims = new List<Claim>()
                                 {
                                     new Claim(ClaimTypes.NameIdentifier, user.Username)
                                 };
-                                ClaimsIdentity claim = new (claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                                ClaimsIdentity claim = new(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                                 AuthenticationProperties property = new();
                                 property.AllowRefresh = true;
                                 property.IsPersistent = user.MySession;
@@ -85,6 +87,35 @@ namespace PointSale.Controllers
                 ViewBag.Error = ex.ToString();
                 return View();
             }
+        }
+
+        [HttpPost]
+        public JsonResult SolicitudContacto(string JsonContacto)
+        {
+            LoginNegocio bLogin = new LoginNegocio();
+            
+            string resultado = bLogin.EnvioDatosContacto(JsonContacto);
+
+            object response;
+
+            if(resultado != "OK")
+            {
+                response = new
+                {
+                    Resultado = "OK",
+                    Mensaje = "La solicitud de contacto se ha enviado correctamente."
+                };
+            }
+            else
+            {
+                response = new
+                {
+                    Resultado = "ERROR",
+                    Mensaje = resultado
+                };
+            }
+
+            return Json(response);
         }
     }
 }
