@@ -87,34 +87,33 @@ function EnviarSolicitudDeContacto() {
 
     if (result == "OK") {
 
-        let nombreCompleto = NombreContacto.value + ' ' + ApellidosContacto;
+        let nombreCompleto = NombreContacto.value + ' ' + ApellidosContacto.value;
         let asunto = ListaAsunto.value == '4' ? Asunto.value : ListaAsunto.options[ListaAsunto.selectedIndex].text;
-        let datos = {
-            NombreContacto: nombreCompleto,
-            Asunto: asunto,
-            DatosContacto: {
-                Telefono: TelefonoContacto.value,
-                Correo: CorreoContacto.value
-            },
-            Cuerpo: Descripcion.value
-        };
 
-        $.ajax({
-            url: '/Login/SolicitudContacto',
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: JSON.stringify(datos),
-            success: function (data) {
-                console.log(data);
-                // Puedes acceder a las propiedades del objeto JSON, por ejemplo:
-                // console.log(data.Nombre);
-            },
-            error: function (error) {
-                console.log("Error: ", error);
-            }
-        });
+        var formData = new URLSearchParams();
+        formData.append("NombreContacto", nombreCompleto);
+        formData.append("Asunto", asunto);
+        formData.append("Telefono", TelefonoContacto.value);
+        formData.append("Correo", CorreoContacto.value);
+        formData.append("Cuerpo", Descripcion.value);
 
+        fetch('/Login/SolicitudContacto', {
+            method: 'POST',
+            headers: {
+                'contentType': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.resultado == "OK") {
+                    alert(data.mensaje);
+                    CleanForms();
+                } else {
+                    alert("Ocurrio un error al enviar la solicitud, por favor pongase en contacto con su adminsitrador.");
+                }
+            })
+            .catch(error => console.error('Error:', error));
     } else {
         alert(result);
     }

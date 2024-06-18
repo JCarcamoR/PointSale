@@ -7,6 +7,7 @@ using PointSale.Models;
 using System.Data.SqlClient;
 using System.Security.Claims;
 using System.Web.Helpers;
+using System.Web.Mvc.Ajax;
 
 namespace PointSale.Controllers
 {
@@ -90,15 +91,15 @@ namespace PointSale.Controllers
         }
 
         [HttpPost]
-        public JsonResult SolicitudContacto(string JsonContacto)
+        public JsonResult SolicitudContacto(string NombreContacto, string Asunto, string Telefono, string Correo, string Cuerpo)
         {
             LoginNegocio bLogin = new LoginNegocio();
-            
-            string resultado = bLogin.EnvioDatosContacto(JsonContacto);
+
+            string resultado = bLogin.EnvioDatosContacto(NombreContacto, Asunto,  Telefono,  Correo,  Cuerpo);
 
             object response;
 
-            if(resultado != "OK")
+            if(resultado == "OK")
             {
                 response = new
                 {
