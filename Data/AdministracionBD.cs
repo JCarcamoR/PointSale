@@ -9,46 +9,42 @@ namespace PointSale.Data
     {
         private readonly Context _contexto;
 
-        public AdministracionBD(Context contexto)
+        public AdministracionBD()
         {
-            _contexto = contexto;
+            _contexto = new Context("Server=LTELMXJCARCAMO\\SQL2014;Database=BD_Sale;User Id=sa;Password=telepro;MultipleActiveResultSets=true");
         }
 
-
-        public List<Parametros> ConsultaParametosSistema(int IdParametro)
+        public List<Parametros> GetParametros(int IdParametro)
         {
+            List<Parametros> parametros = new List<Parametros>();
+
             try
             {
-                DataSet dsConsultaParametros = new DataSet();
-                List<Parametros> parametros = new List<Parametros>();
-                using (SqlConnection connection = new SqlConnection(_contexto.Conexion))
+                using (SqlConnection conexion = new SqlConnection(_contexto.Conexion))
                 {
-                    using (SqlCommand command = new SqlCommand("SpSel_Parametro", connection))
+                    using (SqlCommand comando = new SqlCommand("SpSel_Parametro", conexion))
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.Add("@IdParametro", System.Data.SqlDbType.Int).Value = IdParametro;
-                        connection.Open();
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.Add("@IdParametro", System.Data.SqlDbType.Int).Value = IdParametro;
+                        conexion.Open();
 
-                        SqlDataReader reader = command.ExecuteReader();
-
+                        SqlDataReader reader = comando.ExecuteReader();
 
                         while (reader.Read()) {
                             Parametros oParametro = new Parametros();
                             oParametro.IdParametro = reader.GetInt32(0);
                             oParametro.NomParametro = reader.GetString(1);
                             oParametro.DescParametro = reader.GetString(2);
-                            oParametro.IdParPadre = reader.GetInt32(3);
-                            oParametro.ParValor = reader.GetString(4);
-                            oParametro.propiedadesControl.IdUsuario = reader.GetInt32(5);
-                            oParametro.propiedadesControl.IdEstado = reader.GetInt32(6);
-                            oParametro.propiedadesControl.Modificado = reader.GetDateTime(7);
-                            oParametro.propiedadesControl.Creado = reader.GetDateTime(8);
+                            oParametro.ParValor = reader.GetString(3);
+                            oParametro.propiedadesControl.IdUsuario = reader.GetInt32(4);
+                            oParametro.propiedadesControl.IdEstado = reader.GetInt32(5);
+                            oParametro.propiedadesControl.Modificado = reader.GetDateTime(6);
+                            oParametro.propiedadesControl.Creado = reader.GetDateTime(7);
                             parametros.Add(oParametro);
                         }
                         reader.Close();
-
                     }
-                    connection.Close();
+                    conexion.Close();
                 }
                 return parametros;
             }
@@ -56,9 +52,5 @@ namespace PointSale.Data
                 return null;
             }
         }
-
-
-
-
     }
 }
