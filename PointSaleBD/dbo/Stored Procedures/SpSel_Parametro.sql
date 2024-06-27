@@ -9,7 +9,6 @@ AS
 BEGIN
 
 	SELECT  IdParametro
-			,NomParametro
 			,DescParametro
 			,ParValor
 			,IdUsuario

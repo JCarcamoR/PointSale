@@ -68,7 +68,6 @@
   <ItemGroup>
     <Build Include="dbo\Tables\MARCAS.sql" />
     <Build Include="dbo\Tables\USUARIOS.sql" />
-    <Build Include="dbo\Tables\ROLES.sql" />
     <Build Include="dbo\Tables\PERSONAS.sql" />
     <Build Include="dbo\Tables\PERFILES.sql" />
     <Build Include="dbo\Tables\PARAMETROS.sql" />
