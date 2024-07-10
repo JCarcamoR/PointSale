@@ -7,12 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PointSale.Datos\**" />
+    <Compile Remove="PointSale.Entidades\**" />
+    <Compile Remove="PointSale.Negocio\**" />
+    <Compile Remove="PointSale.Reportes\**" />
     <Compile Remove="PointSaleBD\**" />
     <Compile Remove="PointSaleBussines\**" />
+    <Content Remove="PointSale.Datos\**" />
+    <Content Remove="PointSale.Entidades\**" />
+    <Content Remove="PointSale.Negocio\**" />
+    <Content Remove="PointSale.Reportes\**" />
     <Content Remove="PointSaleBD\**" />
     <Content Remove="PointSaleBussines\**" />
+    <EmbeddedResource Remove="PointSale.Datos\**" />
+    <EmbeddedResource Remove="PointSale.Entidades\**" />
+    <EmbeddedResource Remove="PointSale.Negocio\**" />
+    <EmbeddedResource Remove="PointSale.Reportes\**" />
     <EmbeddedResource Remove="PointSaleBD\**" />
     <EmbeddedResource Remove="PointSaleBussines\**" />
+    <None Remove="PointSale.Datos\**" />
+    <None Remove="PointSale.Entidades\**" />
+    <None Remove="PointSale.Negocio\**" />
+    <None Remove="PointSale.Reportes\**" />
     <None Remove="PointSaleBD\**" />
     <None Remove="PointSaleBussines\**" />
   </ItemGroup>

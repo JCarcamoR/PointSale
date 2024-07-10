@@ -27,11 +27,11 @@ namespace PointSale.Controllers
             {
                 if (c.Identity.IsAuthenticated)
                 {
-                    ViewBag.UserAuAuthenticated = true;
+                    TempData["UserAuAuthenticated"] = true;
                     return RedirectToAction("Index", "Home");
                 }
             }
-            ViewBag.UserAuAuthenticated = false;
+            TempData["UserAuAuthenticated"] = false;
             return View();
         }
 
@@ -42,11 +42,12 @@ namespace PointSale.Controllers
             {
                 using (SqlConnection connection = new SqlConnection(_contexto.Conexion))
                 {
-                    using (SqlCommand command = new SqlCommand("spUsuario", connection))
+                    using (SqlCommand command = new SqlCommand("SpSel_Usuario_01", connection))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add("@Parametro", System.Data.SqlDbType.VarChar).Value = user.Username;
-                        //
+                        command.Parameters.Add("@Usuario", System.Data.SqlDbType.VarChar).Value = user.Username;
+                        command.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = user.Password;
+
                         connection.Open();
                         var dataReader = command.ExecuteReader();
                         while (dataReader.Read())
@@ -71,6 +72,7 @@ namespace PointSale.Controllers
                                     property.ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1); // se mantiene activa hasta por 24 hrs
                                 }
                                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claim), property);
+                                TempData["UserAuAuthenticated"] = true;
                                 return RedirectToAction("Index", "Home");
                             }
                             else
