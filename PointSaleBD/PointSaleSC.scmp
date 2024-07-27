@@ -2,15 +2,15 @@
 <SchemaComparison>
   <Version>10</Version>
   <SourceModelProvider>
+    <ConnectionBasedModelProvider>
+      <ConnectionString>Data Source=LTELMXJCARCAMO\SQL2014;Initial Catalog=BdSale;Persist Security Info=True;User ID=sa;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=True;Trust Server Certificate=True;Command Timeout=0</ConnectionString>
+    </ConnectionBasedModelProvider>
+  </SourceModelProvider>
+  <TargetModelProvider>
     <ProjectBasedModelProvider>
       <ProjectGuid>{9b58a4ea-67a5-44d9-b61c-721a1759265c}</ProjectGuid>
       <Name>PointSaleBD</Name>
     </ProjectBasedModelProvider>
-  </SourceModelProvider>
-  <TargetModelProvider>
-    <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=LTELMXJCARCAMO\SQL2014;Initial Catalog=BD_Sale;Persist Security Info=True;User ID=sa;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=True;Trust Server Certificate=True;Command Timeout=0</ConnectionString>
-    </ConnectionBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
     <SchemaCompareSettingsService>
@@ -346,11 +346,11 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetDatabaseName</Name>
-        <Value>BD_Sale</Value>
+        <Value>PointSaleBD</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetConnectionString</Name>
-        <Value>Data Source=LTELMXJCARCAMO\SQL2014;Initial Catalog=BD_Sale;Persist Security Info=True;User ID=sa;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=True;Trust Server Certificate=True;Application Name="Microsoft SQL Server Data Tools, Schema Compare";Command Timeout=0</Value>
+        <Value>Integrated Security=True;Pooling=False;Connect Timeout=30</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TreatVerificationErrorsAsWarnings</Name>
