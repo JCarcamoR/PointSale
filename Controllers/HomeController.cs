@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PointSale.Models;
+using PointSale.Negocio._00_Sistema;
 using System.Diagnostics;
 
 namespace PointSale.Controllers
@@ -19,7 +20,11 @@ namespace PointSale.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var menuBussines = new MenuBussines();
+            menuBussines.ObtenerMenuPerfil("ADMINISTRADOR");
+
+            ViewBag.userAutenticated = HttpContext.Session.GetString("UserAuAuthenticated");
+            return View(menuBussines.ltsMenus);
         }
 
         public IActionResult Privacy()

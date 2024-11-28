@@ -1,7 +1,7 @@
 ﻿
 // Declaracion de variables.
 var SolicitudContacto = document.getElementById("btnSolContacto");
-var btnRetLogin = document.getElementById("btnReturLog");
+var btnRetLogin = document.getElementById("btnCanSolCon");
 var linkContacto = document.getElementById("lknCto");
 
 var NombreContacto = document.getElementById("CteNombre");
@@ -14,10 +14,6 @@ var Descripcion = document.getElementById("CteDesc");
 
 btnRetLogin.addEventListener("click", function () {
     CleanForms();
-    let SecLog = document.getElementById("SecLogin");
-    SecLog.style.display = "block";
-    let SecCto = document.getElementById("SecContacto");
-    SecCto.style.display = "none";
 });
 
 SolicitudContacto.addEventListener("click", function () {
@@ -26,10 +22,6 @@ SolicitudContacto.addEventListener("click", function () {
 
 linkContacto.addEventListener("click", function () {
     CleanForms();
-    let SecLog = document.getElementById("SecLogin");
-    SecLog.style.display = "none";
-    let SecCto = document.getElementById("SecContacto");
-    SecCto.style.display = "block";
 });
 
 function CleanForms() {
@@ -124,31 +116,31 @@ function ValidaFormularioContacto() {
     let resultado = "OK";
 
     if (NombreContacto.value == '') {
-        return resultado = "Por favor, complete el campo <b>NOMBRE</b>.";
+        return resultado = "Por favor, complete el campo NOMBRE.";
     }
 
     if (ApellidosContacto.value == '') {
-        return resultado = "Por favor, complete el campo <b>APELLIDOS</b>.";
+        return resultado = "Por favor, complete el campo APELLIDOS.";
     }
 
     if (CorreoContacto.value == '') {
-        return resultado = "Por favor, complete el campo <b>CORREO ELECTÓNICO</b>.";
+        return resultado = "Por favor, complete el campo CORREO ELECTÓNICO.";
     }
 
     if (TelefonoContacto.value != '' && isNaN(TelefonoContacto.value)) {
-        return resultado = "Por favor, ingrese un numero valido el campo <b>TELÉFONO</b>.";
+        return resultado = "Por favor, ingrese un numero valido el campo TELÉFONO.";
     } else if (TelefonoContacto.value == '') {
-        return resultado = "Por favor, complete el campo <b>TELÉFONO</b>.";
+        return resultado = "Por favor, complete el campo TELÉFONO.";
     }
 
     if (ListaAsunto.value == '4') {
         if (Asunto.value == '') {
-            return resultado = "Por favor, complete el campo <b>ASUNTO</b>.";
+            return resultado = "Por favor, complete el campo ASUNTO.";
         }
     }
 
     if (Descripcion.value == '') {
-        return resultado = "Por favor, complete el campo <b>DESCRIPCIÓN</b>.";
+        return resultado = "Por favor, complete el campo DESCRIPCIÓN.";
     }
 
     return resultado;

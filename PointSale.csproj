@@ -37,18 +37,31 @@
     <PackageReference Include="bootstrap" Version="5.3.3" />
     <PackageReference Include="jQuery" Version="3.7.1" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Bussines\Alamcen\" />
-    <Folder Include="Bussines\Ventas\" />
+    <Folder Include="Views\Contacto\" />
     <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\Iconos\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\css\Login\Login.css" />
     <None Include="wwwroot\Images\00_ImgLogin.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="PointSale.Entidades\PointSale.Entidades.csproj" />
+    <ProjectReference Include="PointSale.Negocio\PointSale.Negocio.csproj" />
+    <ProjectReference Include="PointSale.Reportes\PointSale.Reportes.csproj" />
   </ItemGroup>
 
 </Project>

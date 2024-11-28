@@ -1,4 +1,4 @@
-﻿@model PointSale.Models.Usuarios
+﻿@model PointSale.Entidades._00_Sistema.SYS_USUARIOS
 
 <!DOCTYPE html>
 <html>
@@ -8,114 +8,109 @@
     <link rel ="stylesheet" href="~/css/Login/Login.css">
 </head>
 <body>
-    <div class="container w-75 bg-primary mt-1 rounded shadow">
-        <div class="row align-items-stretch">
-            <div class="col bg d-none d-lg-block rounded">
-            </div>
-            <div class="col bg-white p-5 rounded-end">
-                <div class="container">
-                    <div id="SecLogin" style="display: block;">
-                        <h2 class="fw-bold text-center py-5">¡Bienvenido!</h2>
-                        <div class="row">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg>
-                        </div>
-                        <br />
-                        <form asp-action="Login" method="post" asp-controller="Login">
-                            <div class="mb-4">
-                                <label asp-for="Username" class="form-label"><b>Usuario<i class="cr">*</i>:</b></label>
-                                <input asp-for="Username" class="form-control" type="text" id="UserLogin"/>
-                                <span asp-validation-for="Username" class="text-danger"></span>
-                            </div>
-                            <div class="mb-4">
-                                <label asp-for="Password" class="form-label"><b>Contraseña<i class="cr">*</i>:</b></label>
-                                <div class="input-group mb-3">
-                                    <input asp-for="Password" class="form-control" type="password" id="password" aria-label="Username" aria-describedby="basic-addon1" />
-                                    <span class="input-group-text" onclick="togglePasswordVisibility(1)" style="display:block;" id="Eye1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
-                                            <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z" />
-                                            <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z" />
-                                        </svg>
-                                    </span>
-                                    <span class="input-group-text" onclick="togglePasswordVisibility(2)" style="display:none;" id="Eye2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-outline-success"><b>Iniciar Sesión </b></button>
-                            </div>
-                            <br />
-                            <div class="my-3">
-                                <p style="text-align: justify;">
-                                    Tiene dudas acerca del sistema, ¿Has encontrado un error, necesita recuperar su contraseña de usuario, deseas modificaciones, 
-                                    o un desarrollo personalizado según tus necesidades?. <span><a href="#" id="lknCto"><b>¡Contactanos!</b></a></span>
-                                </p>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="SecContacto" style="display: none;">
-                        <div class="row">
-                            <button type="button" class="btn-close" aria-label="Close" id="btnReturLog"></button>
-                        </div>
-                        <h2 class="fw-bold text-center py-5">¡Contactanos!</h2>
-                        <div class="row">
-                            <div class="col">
-                                <label for="NombresCto" class="form-label"><b>Nombre(s)<i class="cr">*</i>: </b></label>
-                                <input type="text" class="form-control" placeholder="First name" id="CteNombre">
-                            </div>
-                            <div class="col">
-                                <label for="ApellidosCto" class="form-label"><b>Apellidos<i class="cr">*</i>: </b></label>
-                                <input type="text" class="form-control" placeholder="Last name" id="CteApe">
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col">
-                                <label for="ApellidosCto" class="form-label"><b>Correo electrónico<i class="cr">*</i>: </b></label>
-                                <input type="email" class="form-control" placeholder="correo@dominio.com" id="CteEmail">
-                            </div>
-                            <div class="col">
-                                <label for="ApellidosCto" class="form-label"><b>Teléfono<i class="cr">*</i>: </b></label>
-                                <input type="tel" class="form-control" placeholder="5512345678" id="CteTel">
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col">
-                                <label for="ApellidosCto" class="form-label"><b>Asunto<i class="cr">*</i>: </b></label>
-                                <select class="form-select" id="CteAs" onchange="cambioOpcion()" style="display:block">
-                                    <option value="1" selected>Solicitud de información.</option>
-                                    <option value="2" >Recuperar contraseña.</option>
-                                    <option value="3" >Reporte de Bug.</option>
-                                    <option value="4" >Otro...</option>
-                                </select>
-                                <input type="text" style="display:none" class="form-control" placeholder="Asunto" aria-label="First name" id="CteOpOtro">
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col">
-                                <label for="ApellidosCto" class="form-label"><b>Descripción<i class="cr">*</i>: </b></label>
-                                <textarea class="form-control" rows="3" id="CteDesc"></textarea>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="d-grid">
-                            <button type="button" id="btnSolContacto" class="btn btn-outline-warning for"><b>Enviar</b></button>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-4 " style="background-color: rgba(255, 255, 255, 0.85);">
+                <div class="row">
+                    <img src="~/iconos/person-fill-lock.svg" width="150" height="150" />
                 </div>
-                
+                <div class="row align-items-start">
+                    <form asp-action="Login" method="post" asp-controller="Login">
+                        <div class="mb-4">
+                            <label asp-for="SUO_DS_CLAVE" class="form-label">
+                                <b>Usuario<i class="cr">*</i>:</b>
+                            </label>
+                            <input asp-for="SUO_DS_CLAVE" class="form-control" type="text" id="UserLogin" />
+                        </div>
+                        <div class="mb-4">
+                            <label asp-for="SUO_DS_PWORD" class="form-label"><b>Contraseña<i class="cr">*</i>:</b></label>
+                            <div class="input-group mb-3">
+                                <input asp-for="SUO_DS_PWORD" class="form-control" type="password" id="password" aria-label="Username" aria-describedby="basic-addon1" />
+                                <span class="input-group-text" onclick="togglePasswordVisibility(1)" style="display:block;" id="Eye1">
+                                    <img src="~/iconos/eye-slash-fill.svg" width="16" height="16" fill="currentColor" />
+                                </span>
+                                <span class="input-group-text" onclick="togglePasswordVisibility(2)" style="display:none;" id="Eye2">
+                                    <img src="~/iconos/eye-fill.svg" width="16" height="16" fill="currentColor" />
+                                </span>
+                            </div>
+                            <span asp-validation-for="SUO_DS_PWORD" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success"><b>Iniciar Sesión </b></button>
+                        </div>
+                        <div class="my-3">
+                            <p style="text-align: justify;">
+                                <b>
+                                    Tiene dudas acerca del sistema, ¿Has encontrado un error, necesita recuperar su contraseña de usuario, deseas modificaciones,
+                                    o un desarrollo personalizado según tus necesidades?
+                                    <span>
+                                        <a style="color:red" class="btn" data-bs-toggle="modal" data-bs-target="#ModalContacto" id="lknCto"><b>¡Contactanos!</b></a>
+                                    </span>.
+                                </b>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <script src="~/js/Login/Login.js" type="text/javascript"></script>
+    <div class="modal fade" id="ModalContacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Solicitud de contacto.</b></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="NombresCto" class="form-label"><b>Nombre(s)<i class="cr">*</i>: </b></label>
+                            <input type="text" class="form-control" placeholder="First name" id="CteNombre">
+                        </div>
+                        <div class="col">
+                            <label for="ApellidosCto" class="form-label"><b>Apellidos<i class="cr">*</i>: </b></label>
+                            <input type="text" class="form-control" placeholder="Last name" id="CteApe">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <label for="ApellidosCto" class="form-label"><b>Correo electrónico<i class="cr">*</i>: </b></label>
+                            <input type="email" class="form-control" placeholder="correo@dominio.com" id="CteEmail">
+                        </div>
+                        <div class="col">
+                            <label for="ApellidosCto" class="form-label"><b>Teléfono<i class="cr">*</i>: </b></label>
+                            <input type="tel" class="form-control" placeholder="5512345678" id="CteTel">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <label for="ApellidosCto" class="form-label"><b>Asunto<i class="cr">*</i>: </b></label>
+                            <select class="form-select" id="CteAs" onchange="cambioOpcion()" style="display:block">
+                                <option value="1" selected>Solicitud de información.</option>
+                                <option value="2">Recuperar contraseña.</option>
+                                <option value="3">Reporte de Bug.</option>
+                                <option value="4">Otro...</option>
+                            </select>
+                            <input type="text" style="display:none" class="form-control" placeholder="Asunto" aria-label="First name" id="CteOpOtro">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <label for="ApellidosCto" class="form-label"><b>Descripción<i class="cr">*</i>: </b></label>
+                            <textarea class="form-control" rows="3" id="CteDesc"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btnCanSolCon">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnSolContacto">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/login/login.js"></script>
 </body>
 </html>

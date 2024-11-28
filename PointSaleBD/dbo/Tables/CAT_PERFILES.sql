@@ -1,10 +1,7 @@
 ﻿CREATE TABLE [dbo].[CAT_PERFILES] (
-    [PER_PK_CVE]        INT          IDENTITY (1, 1) NOT NULL,
-    [PER_DS_NOMBRE]     VARCHAR (50) NULL,
-    [EST_PK_CVE]        INT          NULL,
-    [PER_US_MODIFICADO] VARCHAR (20) NULL,
-    [PER_FE_ULT_MOD]    DATETIME     NULL,
-    [PER_FE_CREADO]     DATETIME     NULL,
-    PRIMARY KEY CLUSTERED ([PER_PK_CVE] ASC)
+    [CPL_PK_ID]     INT          IDENTITY (1, 1) NOT NULL,
+    [SMN_PK_ID]     INT          NULL,
+    [SEO_PK_ID]     INT          NULL,
+    [CPL_DS_PERFIL] VARCHAR (50) NULL
 );
 

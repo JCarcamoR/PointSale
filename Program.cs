@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using PointSale.Data;
 
 namespace PointSale
 {
@@ -12,15 +11,19 @@ namespace PointSale
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            // Add services conection data base
-            builder.Services.AddSingleton(new Context(builder.Configuration.GetConnectionString("ConnectionServer")));
-
             // Add setings for accout client
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
             {
                 option.LoginPath = "/Login/Login";
             });
 
+            builder.Services.AddDistributedMemoryCache(); // Necesario para la sesión
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5); // Tiempo de vida de la sesión
+                options.Cookie.HttpOnly = true; // Cookie accesible solo desde HTTP
+                options.Cookie.IsEssential = true; // Necesario para cookies no opcionales
+            });
 
             var app = builder.Build();
 
@@ -34,17 +37,13 @@ namespace PointSale
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
-
             app.UseAuthentication();
-
             app.UseAuthorization();
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
             app.Run();
         }
     }

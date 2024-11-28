@@ -4,13 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #def0d9;
-    background: rgb(188,224,178);
-    background: linear-gradient(180deg, rgba(188,224,178,1) 50%, rgba(222,240,217,1) 87%, rgba(255,255,255,1) 100%);
-}
-
-.bg {
-    background-image: url("/Images/00_ImgLogin.jpg");
+    background-image: url("/Images/BackGroud.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

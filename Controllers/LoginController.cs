@@ -1,25 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using PointSale.Bussines.Sistema.Login;
-using PointSale.Data;
-using PointSale.Models;
+using PointSale.Entidades._00_Sistema;
+using PointSale.Negocio._00_Sistema;
 using System.Data.SqlClient;
 using System.Security.Claims;
-using System.Web.Helpers;
-using System.Web.Mvc.Ajax;
 
 namespace PointSale.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly Context _contexto;
-
-        public LoginController(Context contexto)
-        {
-            _contexto = contexto;
-        }
-
         public IActionResult login()
         {
             ClaimsPrincipal c = HttpContext.User;
@@ -27,67 +17,40 @@ namespace PointSale.Controllers
             {
                 if (c.Identity.IsAuthenticated)
                 {
-                    TempData["UserAuAuthenticated"] = true;
+                    HttpContext.Session.SetString("UserAuAuthenticated", "true");
+                    ViewBag.userAutenticated = "true";
                     return RedirectToAction("Index", "Home");
                 }
             }
-            TempData["UserAuAuthenticated"] = false;
+            HttpContext.Session.SetString("UserAuAuthenticated", "false");
+            ViewBag.userAutenticated = "false";
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(Usuarios user)
+        public async Task<IActionResult> Login(SYS_USUARIOS user)
         {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_contexto.Conexion))
-                {
-                    using (SqlCommand command = new SqlCommand("SpSel_Usuario_01", connection))
-                    {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add("@Usuario", System.Data.SqlDbType.VarChar).Value = user.Username;
-                        command.Parameters.Add("@Password", System.Data.SqlDbType.VarChar).Value = user.Password;
+            LoginBussines SessionUser = new LoginBussines(user);
+            SessionUser.IniciaSession();
 
-                        connection.Open();
-                        var dataReader = command.ExecuteReader();
-                        while (dataReader.Read())
+            if (SessionUser.UserAutenticated) { 
+                List<Claim> claims = new List<Claim>()
                         {
-                            if (dataReader["UserName"] != null && user.Username != null)
-                            {
-                                List<Claim> claims = new List<Claim>()
-                                {
-                                    new Claim(ClaimTypes.NameIdentifier, user.Username)
-                                };
-                                ClaimsIdentity claim = new(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                                AuthenticationProperties property = new();
-                                property.AllowRefresh = true;
-                                property.IsPersistent = user.MySession;
-
-                                if (!user.MySession)
-                                {
-                                    property.ExpiresUtc = DateTime.UtcNow.AddMinutes(1);  // tiempo de espera para cierre de session en caso de no mantenerla activa
-                                }
-                                else
-                                {
-                                    property.ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1); // se mantiene activa hasta por 24 hrs
-                                }
-                                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claim), property);
-                                TempData["UserAuAuthenticated"] = true;
-                                return RedirectToAction("Index", "Home");
-                            }
-                            else
-                            {
-                                ViewBag.Error = "Credenciales Erroneas";
-                            }
-                        }
-                        connection.Close();
-                    }
-                    return View();
-                }
-            }
-            catch (Exception ex)
+                            new Claim(ClaimTypes.NameIdentifier, user.SUO_DS_CLAVE)
+                        };
+                ClaimsIdentity claim = new(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                AuthenticationProperties property = new();
+                property.AllowRefresh = true;
+                property.IsPersistent = false;
+                property.ExpiresUtc = SessionUser.SettingsSession ? 
+                                      DateTime.UtcNow.AddMinutes(SessionUser.Time) : 
+                                      DateTime.UtcNow.AddMinutes(1);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claim), property);
+                HttpContext.Session.SetString("UserAuAuthenticated", "true");
+                return RedirectToAction("Index", "Home");
+            } else
             {
-                ViewBag.Error = ex.ToString();
+                ViewBag.Error = SessionUser.error.MensajeError;
                 return View();
             }
         }
@@ -95,30 +58,30 @@ namespace PointSale.Controllers
         [HttpPost]
         public JsonResult SolicitudContacto(string NombreContacto, string Asunto, string Telefono, string Correo, string Cuerpo)
         {
-            LoginNegocio bLogin = new LoginNegocio();
+            //LoginNegocio bLogin = new LoginNegocio();
 
-            string resultado = bLogin.EnvioDatosContacto(NombreContacto, Asunto,  Telefono,  Correo,  Cuerpo);
+            //string resultado = bLogin.EnvioDatosContacto(NombreContacto, Asunto, Telefono, Correo, Cuerpo);
 
-            object response;
+            //object response;
 
-            if(resultado == "OK")
-            {
-                response = new
-                {
-                    Resultado = "OK",
-                    Mensaje = "La solicitud de contacto se ha enviado correctamente."
-                };
-            }
-            else
-            {
-                response = new
-                {
-                    Resultado = "ERROR",
-                    Mensaje = resultado
-                };
-            }
+            //if (resultado == "OK")
+            //{
+            //    response = new
+            //    {
+            //        Resultado = "OK",
+            //        Mensaje = "La solicitud de contacto se ha enviado correctamente."
+            //    };
+            //}
+            //else
+            //{
+            //    response = new
+            //    {
+            //        Resultado = "ERROR",
+            //        Mensaje = resultado
+            //    };
+            //}
 
-            return Json(response);
+            return null;
         }
     }
 }

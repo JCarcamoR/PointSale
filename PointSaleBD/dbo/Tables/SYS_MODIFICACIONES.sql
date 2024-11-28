@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[SYS_MODIFICACIONES] (
+    [SMN_PK_ID]   INT      IDENTITY (1, 1) NOT NULL,
+    [SUO_PK_ID]   INT      NULL,
+    [SMN_FE_UMOD] DATE     NULL,
+    [SMN_HR_UMOD] TIME (7) NULL
+);
+
